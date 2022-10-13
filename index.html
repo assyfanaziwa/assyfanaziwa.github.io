@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1366px;
+            height: 768px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/UniversitasLampung_1.js"></script>
+        <script src="data/InformasiObjek_Unila_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-5.368901651387092,105.2385676677783],[-5.363600330785418,105.24614295353662]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_UniversitasLampung_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Univeritas</th>\
+                        <td>' + (feature.properties['Univeritas'] !== null ? autolinker.link(feature.properties['Univeritas'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_UniversitasLampung_1_0(feature) {
+            switch(String(feature.properties['Univeritas'])) {
+                case 'Fakultas Ekonomi dan Bisnis':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(209,189,119,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(38,85,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Hukum':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,123,237,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Ilmu Sosial dan Ilmu Politik':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,53,144,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Teknik':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,208,208,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Embung Belakang':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,174,86,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Perpustakaan Unila':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(104,176,122,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung Serba Guna':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(139,102,195,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lapangan':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(78,220,127,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Pertanian':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,33,181,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kolam 1':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(52,147,134,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Kolam 2':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(151,38,52,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Klinik Unila':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(129,177,81,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Matematika dan Ilmu Pengetahuan Alam':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,123,174,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Kedokteran':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(178,223,138,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fakultas Keguruan dan Ilmu Pengetahuan':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(142,70,91,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,239,68,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gedung Rektorat':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(109,217,165,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                pane: 'pane_UniversitasLampung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(162,14,110,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_UniversitasLampung_1');
+        map.getPane('pane_UniversitasLampung_1').style.zIndex = 401;
+        map.getPane('pane_UniversitasLampung_1').style['mix-blend-mode'] = 'normal';
+        var layer_UniversitasLampung_1 = new L.geoJson(json_UniversitasLampung_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_UniversitasLampung_1',
+            layerName: 'layer_UniversitasLampung_1',
+            pane: 'pane_UniversitasLampung_1',
+            onEachFeature: pop_UniversitasLampung_1,
+            style: style_UniversitasLampung_1_0,
+        });
+        bounds_group.addLayer(layer_UniversitasLampung_1);
+        map.addLayer(layer_UniversitasLampung_1);
+        function pop_InformasiObjek_Unila_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Objek'] !== null ? autolinker.link(feature.properties['Objek'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Gambar</th>\
+                        <td>' + (feature.properties['Gambar'] !== null ? '<img src="images/' + String(feature.properties['Gambar']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Deskripsi</th>\
+                        <td>' + (feature.properties['Deskripsi'] !== null ? autolinker.link(feature.properties['Deskripsi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_InformasiObjek_Unila_2_0() {
+            return {
+                pane: 'pane_InformasiObjek_Unila_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,240,140,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_InformasiObjek_Unila_2');
+        map.getPane('pane_InformasiObjek_Unila_2').style.zIndex = 402;
+        map.getPane('pane_InformasiObjek_Unila_2').style['mix-blend-mode'] = 'normal';
+        var layer_InformasiObjek_Unila_2 = new L.geoJson(json_InformasiObjek_Unila_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_InformasiObjek_Unila_2',
+            layerName: 'layer_InformasiObjek_Unila_2',
+            pane: 'pane_InformasiObjek_Unila_2',
+            onEachFeature: pop_InformasiObjek_Unila_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_InformasiObjek_Unila_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_InformasiObjek_Unila_2);
+        map.addLayer(layer_InformasiObjek_Unila_2);
+        setBounds();
+        var i = 0;
+        layer_UniversitasLampung_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Univeritas'] !== null?String('<div style="color: #323232; font-size: 6pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['Univeritas']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_UniversitasLampung_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_UniversitasLampung_1,layer_InformasiObjek_Unila_2]);
+        map.on("zoomend", function(){
+            resetLabels([layer_UniversitasLampung_1,layer_InformasiObjek_Unila_2]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_UniversitasLampung_1,layer_InformasiObjek_Unila_2]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_UniversitasLampung_1,layer_InformasiObjek_Unila_2]);
+        });
+        </script>
+    </body>
+</html>
